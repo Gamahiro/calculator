@@ -10,6 +10,28 @@ Divide
 
 */
 
+const numButtons = document.querySelectorAll('.numButton');
+
+// ---- why doesn't it work? -----
+/* numButtons.forEach((btn) => {
+
+    if (btn.id == "num1Button") {
+        btn.addEventListener('click', () => {
+            console.log("yep");
+        });
+    } else if (btn.id == "num2Button") {
+        btn.addEventListener('click', () => {
+            console.log("yep");
+        });
+    }
+
+
+
+
+
+}); */
+
+
 
 
 
