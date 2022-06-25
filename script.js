@@ -10,16 +10,52 @@ Divide
 
 */
 
-const numButtons = document.querySelectorAll('.numButton');
+const numButtons = document.querySelectorAll(".numButton");
 
 // ---- why doesn't it work? -----
-/* numButtons.forEach((btn) => {
+console.log('yep');
+
+
+numButtons.forEach((btn) => {
 
     if (btn.id == "num1Button") {
+        
         btn.addEventListener('click', () => {
             console.log("yep");
         });
     } else if (btn.id == "num2Button") {
+        btn.addEventListener('click', () => {
+            console.log("yep");
+        });
+    } else if (btn.id == "num3Button") {
+        btn.addEventListener('click', () => {
+            console.log("yep");
+        });
+    } else if (btn.id == "num4Button") {
+        btn.addEventListener('click', () => {
+            console.log("yep");
+        });
+    } else if (btn.id == "num5Button") {
+        btn.addEventListener('click', () => {
+            console.log("yep");
+        });
+    } else if (btn.id == "num6Button") {
+        btn.addEventListener('click', () => {
+            console.log("yep");
+        });
+    }else if (btn.id == "num7Button") {
+        btn.addEventListener('click', () => {
+            console.log("yep");
+        });
+    }else if (btn.id == "num8Button") {
+        btn.addEventListener('click', () => {
+            console.log("yep");
+        });
+    }else if (btn.id == "num9Button") {
+        btn.addEventListener('click', () => {
+            console.log("yep");
+        });
+    }else if (btn.id == "num0Button") {
         btn.addEventListener('click', () => {
             console.log("yep");
         });
@@ -29,7 +65,12 @@ const numButtons = document.querySelectorAll('.numButton');
 
 
 
-}); */
+
+
+
+
+
+}); 
 
 
 

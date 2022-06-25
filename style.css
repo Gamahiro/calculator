@@ -20,11 +20,13 @@ body {
     height: 50px;
     font-size: 34px;
     text-align: end;
+    width: 210px;
+    margin: 15px;
+    padding-right: 15px;
 }
 
 .buttonsBox {
     padding: 15px;
-    padding-top: 30px;
 }
 
 .buttonsBox button {
