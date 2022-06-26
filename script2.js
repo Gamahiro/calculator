@@ -9,78 +9,52 @@ const operatorButton = document.querySelectorAll(".operatorButton");
 //update sum to += number
 
 
+function add(num1, num2) {
 
-
-let sum = 0;
-let num2 = 0;
-
-displayNumbers.textContent = sum;
-
-numButtons.forEach((btn) => {
-
-
-    if (btn.id == "num1Button") {
-        
-
-        btn.addEventListener('click', () => {
-            num2 = '1';
-            displayNumbers.textContent = num2;
-            if (sum != 0) {
-                
-                num2 += '1'
-                displayNumbers.textContent = num2;
-                
-            } 
-        })
-    }
-
-    //button2
-
-});
-
-
-
-
-function add(number1, number2) {
-    number1 = Number(number1);
-    number2 = Number(number2);
-    console.log("number1: ",number1, " number2 : ", number2)
-    number1 += number2;
-    sum = number1;
-    displayNumbers.textContent = sum;
-    console.log("number1: ",number1, " number2 : ", number2)
-
+    num1 += num2;
+    console.log(num1);
 }
 
-operatorButton.forEach((btn) => {
+
+function subtract(num1, num2) {
+
+    num1 -= num2;
+    console.log(num1);
+}
 
 
-    if (btn.id === "addButton") {
+function multiply(num1, num2) {
 
-        btn.addEventListener('click', () => {
+    num1 *= num2;
+    console.log(num1);
+}
 
-            add(sum, num2);
-            console.log(sum, num2);
-        });
+
+function divide(num1, num2) {
+
+    num1 /= num2;
+    console.log(num1);
+}
+
+function operate(operator, num1, num2) {
+    
+    if(operator === '+') {
+        add(num1, num2);
+    } 
+    else if(operator === '-') {
+        subtract(num1, num2);
+    }
+    else if(operator === '*') {
+        multiply(num1, num2);
+    }
+    else if(operator === '/') {
+        divide(num1, num2);
     }
 
 
 
 
-    if (btn.id === "equalsButton") {
-        
-        btn.addEventListener('click', () => {
-
-            add(sum, num2);
-  
-
-        })
-
-    }
 
 
 
-
-
-
-});
+}
