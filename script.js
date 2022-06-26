@@ -29,6 +29,13 @@ function addToDisplay(num) {
 
 }
 
+function clearDisplay() {
+    displayNumbers.textContent = 0;
+    num1 = "";
+    operator = "";
+
+}
+
 
 numButtons.forEach((btn) => {
 
@@ -77,8 +84,43 @@ numButtons.forEach((btn) => {
 
 });
 
-let num1;
+let sum = 0;
+let num1 = Number(displayNumbers.textContent);
 let operator;
+
+
+/** initialVar
+ * +=
+ * next num
+ * 
+ * 
+ * 5 + 5 = 10 + 5 = 15 + 5 = 20 + 5
+ * 
+ * num1 += nextnum
+ * 
+ * 
+ * click num > show num > click + > show num += new num
+ * 
+ *  sum += num1
+ *  sum -= num1
+    sum *= num1
+    sum /= num1
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 operatorButton.forEach((btn) => {
@@ -87,19 +129,26 @@ operatorButton.forEach((btn) => {
     if (btn.id == "addButton") {
 
         btn.addEventListener('click', () => {
-            operator = '+';
-            num1 = displayNumbers.textContent;
-            displayNumbers.textContent = "";
+
+            console.log(sum, num1);
+            add(sum, num1);
+
+
         });
     }
 
     if (btn.id == "subtractButton") {
 
         btn.addEventListener('click', () => {
+            if (operator != undefined) {
+                num1 = Number(num1);
+                num1 -= Number(displayNumbers.textContent);
+                displayNumbers.textContent = "";
+            }else {
             operator = '-';
             num1 = displayNumbers.textContent;
             displayNumbers.textContent = "";
-
+        }
         });
     }
 
@@ -130,6 +179,10 @@ operatorButton.forEach((btn) => {
 
         });
     }
+
+    if (btn.id == "clearButton") {
+        btn.addEventListener('click', clearDisplay);
+    }
 });
 
 
@@ -140,31 +193,35 @@ operatorButton.forEach((btn) => {
 
 
 
-function add(num1, num2) {
+function add(sum, num1) {
     
-    sum = num1 + num2;
+    sum = Number(sum);
+    sum += num1;
     displayNumbers.textContent = sum;
 }
 
 function subtract(num1, num2) {
     
-    sum = num1 - num2;
-    displayNumbers.textContent = sum;
+    num1 -= num2;
+    displayNumbers.textContent = num1;
 }
 
 function multiply(num1, num2) {
     
-    sum = num1 * num2;
-    displayNumbers.textContent = sum;
+    num1 *= num2;
+    displayNumbers.textContent = num1;
 }
 
 function divide(num1, num2) {
     
-    sum = num1 / num2;
-    displayNumbers.textContent = sum;
+    num1 /= num2;
+    displayNumbers.textContent = num1;
 }
 
 function operate(operator, num1, num2) {
+    console.log(operator, num1, num2);
+
+
 
     if (operator === '+') {
         add(num1, num2);
