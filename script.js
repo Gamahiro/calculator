@@ -29,7 +29,7 @@ function addToDisplay(num) {
 
 }
 
-function clearDisplay() {
+function clearAll() {
     displayNumbers.textContent = 0;
     num1 = "";
     operator = "";
@@ -181,7 +181,7 @@ operatorButton.forEach((btn) => {
     }
 
     if (btn.id == "clearButton") {
-        btn.addEventListener('click', clearDisplay);
+        btn.addEventListener('click', clearAll);
     }
 });
 
