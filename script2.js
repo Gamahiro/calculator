@@ -4,78 +4,101 @@ const operatorButton = document.querySelectorAll(".operatorButton");
 
 
 
-//EventListener number button: send button pressed to display
 
-//update sum to += number
+//buttons set operator when pressed. Operator is later used when using operate()
+//operate() gets operator to determine what function to call, add(), subtract() etc.
+// number buttons (0-9) calls addToDisplay() where secondaryValue and textContent of displayNumbers is set
 
 
 
-
-let displayValue = 0;
+let displayValue = "0";
 let operator;
 let secondaryValue;
-
-
+displayNumbers.textContent = displayValue;
 
 
 function add() {
 
     displayValue = Number(displayValue);
     displayValue += Number(secondaryValue);
-    console.log("displayValue: " + displayValue + " secondaryValue: " + secondaryValue);
-    secondaryValue = undefined;
+    secondaryValue = "";
     displayNumbers.textContent = displayValue;
     
 }
 
 
-function subtract(num1, num2) {
+function subtract() {
+console.log(displayValue)
 
-    num1 -= num2;
-    console.log(num1);
+    if(displayValue === 0 || displayValue === '0') {
+        displayValue = secondaryValue;
+        secondaryValue = "";
+        displayNumbers.textContent = displayValue;
+    } else {
+    displayValue = Number(displayValue);
+    displayValue -= Number(secondaryValue);
+    secondaryValue = "";
+    displayNumbers.textContent = displayValue;
+}
 }
 
 
-function multiply(num1, num2) {
+function multiply() {
 
-    num1 *= num2;
-    console.log(num1);
+    if(displayValue === 0 || displayValue === '0') {
+        displayValue = secondaryValue;
+        secondaryValue = "";
+        displayNumbers.textContent = displayValue;
+    } else {
+    displayValue = Number(displayValue);
+    displayValue *= Number(secondaryValue);
+    secondaryValue = "";
+    displayNumbers.textContent = displayValue;
+}
 }
 
 
-function divide(num1, num2) {
+function divide() {
+console.log("displayValue: " + displayValue + " secondary: " + secondaryValue)
 
-    num1 /= num2;
-    console.log(num1);
+    if(displayValue === 0 || displayValue === '0') {
+        displayValue = secondaryValue;
+        secondaryValue = "";
+        displayNumbers.textContent = displayValue;
+    } else {
+    displayValue = Number(displayValue);
+    displayValue /= Number(secondaryValue);
+    secondaryValue = "";
+    displayNumbers.textContent = displayValue;
+}
 }
 
-function operate(operator) {
+
+function operate() {
     
     if(operator === '+') {
-        add(displayValue, secondaryValue);
+        add();
     } 
     else if(operator === '-') {
-        subtract(num1, num2);
+        subtract();
     }
     else if(operator === '*') {
-        multiply(num1, num2);
+        multiply();
     }
     else if(operator === '/') {
-        divide(num1, num2);
+        divide();
     }
 
 
 }
 
 function addToDisplay(num) {
-    if (displayNumbers.textContent === '0') {
-        displayNumbers.textContent = "";
-        displayNumbers.textContent += num;
-        
-    } else {
-        displayNumbers.textContent += num;
-        secondaryValue = displayNumbers.textContent;
-        console.log(displayValue)
+    if(secondaryValue === undefined) {
+        secondaryValue = num;
+        displayNumbers.textContent = secondaryValue;
+    }else {
+        secondaryValue += num;
+        displayNumbers.textContent = secondaryValue;
     }
 
 }
@@ -83,7 +106,7 @@ function addToDisplay(num) {
 function clearAll() {
     displayNumbers.textContent = 0;
     displayValue = "0";
-    secondaryValue = undefined;
+    secondaryValue = "";
     operator = "";
 
 }
@@ -141,7 +164,7 @@ operatorButton.forEach((btn) => {
         btn.addEventListener('click', () => {
 
             operator = '+'
-            add(displayValue, secondaryValue);
+            add();
 
 
         });
@@ -150,24 +173,16 @@ operatorButton.forEach((btn) => {
     if (btn.id == "subtractButton") {
 
         btn.addEventListener('click', () => {
-            if (operator != undefined) {
-                num1 = Number(num1);
-                num1 -= Number(displayNumbers.textContent);
-                displayNumbers.textContent = "";
-            }else {
-            operator = '-';
-            num1 = displayNumbers.textContent;
-            displayNumbers.textContent = "";
-        }
+            operator = '-'
+            subtract();
         });
     }
 
     if (btn.id == "multiplyButton") {
 
         btn.addEventListener('click', () => {
-            operator = '*';
-            num1 = displayNumbers.textContent;
-            displayNumbers.textContent = "";
+            operator = '*'
+            multiply();
 
         });
     }
@@ -175,18 +190,15 @@ operatorButton.forEach((btn) => {
     if (btn.id == "divideButton") {
 
         btn.addEventListener('click', () => {
-            operator = '/';
-            num1 = displayNumbers.textContent;
-            displayNumbers.textContent = "";
+            operator = '/'
+            divide();
 
         });
     }
 
     if (btn.id == "equalsButton") {
         btn.addEventListener('click', () => {
-            operate(operator, Number(num1), Number(displayNumbers.textContent));
-
-
+            operate(operator);
         });
     }
 
