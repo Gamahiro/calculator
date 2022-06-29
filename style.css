@@ -3,20 +3,25 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgb(165, 165, 165);
 }
 
 .containerBorder {
     padding: 30px;
     border: 2px black solid;
+    border-radius: 7px;
+    background-color: gray;
 }
 
 .container {
-    width: 300px;
+    width: 265px;
     border: 2px black solid;
+    background-color: aliceblue;
 }
 
 .display {
     border: 2px black solid;
+    background-color: white;
     height: 50px;
     font-size: 34px;
     text-align: end;
@@ -27,9 +32,33 @@ body {
 
 .buttonsBox {
     padding: 15px;
+
 }
 
 .buttonsBox button {
     width: 75px;
     height: 35px;
+}
+
+button {
+
+    border: 2px ridge white;
+    border-radius: 6px;
+    background-color: gray;
+    color: white;
+    font-weight: 900;
+}
+
+button:hover {
+    border: 3px white solid;
+}
+
+button:active {
+    background-color: rgba(0, 0, 0, 0.309);
+}
+
+
+
+.operatorButton {
+    background-color: orange;
 }
