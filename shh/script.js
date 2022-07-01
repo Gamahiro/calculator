@@ -11,111 +11,135 @@ const operatorButton = document.querySelectorAll(".operatorButton");
 
 
 
-let displayValue = "0";
-let operator;
-let secondaryValue;
-displayNumbers.textContent = displayValue;
+let primaryValue = 0;
+let operator = null;
+let secondOperator = null;
+let secondaryValue = null;
+displayNumbers.textContent = val2;
 
 
 function add() {
 
-    console.log("displayValue: " + displayValue + " secondaryValue: " + secondaryValue)
-    displayValue = Number(displayValue);
-    displayValue += Number(secondaryValue);
-    
-    secondaryValue = "";
-    displayNumbers.textContent = displayValue;
-    console.log("displayValue: " + displayValue + " secondaryValue: " + secondaryValue)
+    if (secondaryValue === null) {
+        secondaryValue = ""
+        displayNumbers.textContent = val2;
+
+    }
+
+
+    if (val2 === 0 || val2 === '0') {
+        val2 = secondaryValue;
+        secondaryValue = "";
+        displayNumbers.textContent = val2;
+    } else {
+        val2 = Number(val2);
+        val2 += Number(secondaryValue);
+        secondaryValue = "";
+        displayNumbers.textContent = val2;
+    }
 }
 
 
 function subtract() {
-console.log(displayValue)
+    console.log(val2)
 
-    if(displayValue === 0 || displayValue === '0') {
-        displayValue = secondaryValue;
+    if (val2 === 0 || val2 === '0') {
+        val2 = Number(val2);
+        val2 = Number(secondaryValue);
         secondaryValue = "";
-        displayNumbers.textContent = displayValue;
+        displayNumbers.textContent = val2;
     } else {
-        console.log("1. displayValue: " + displayValue + "secondaryValue: " + secondaryValue)
-    displayValue = Number(displayValue);
-    displayValue -= Number(secondaryValue);
-    console.log("2. displayValue: " + displayValue + "secondaryValue: " + secondaryValue)
-    secondaryValue = "";
-    displayNumbers.textContent = displayValue;
-    console.log("3. displayValue: " + displayValue + "secondaryValue: " + secondaryValue)
-}
+        console.log("1. displayValue: " + val2 + "secondaryValue: " + secondaryValue)
+        val2 = Number(val2);
+        val2 -= Number(secondaryValue);
+        console.log("2. displayValue: " + val2 + "secondaryValue: " + secondaryValue)
+        secondaryValue = "";
+        displayNumbers.textContent = val2;
+        console.log("3. displayValue: " + val2 + "secondaryValue: " + secondaryValue)
+    }
 }
 
 
 function multiply() {
 
-    if(displayValue === 0 || displayValue === '0') {
-        displayValue = secondaryValue;
+
+    if (val2 === 0 || val2 === '0' || val2 === "") {
+        val2 = secondaryValue;
         secondaryValue = "";
-        displayNumbers.textContent = displayValue;
+        displayNumbers.textContent = val2;
     } else {
-    displayValue = Number(displayValue);
-    displayValue *= Number(secondaryValue);
-    secondaryValue = "";
-    displayNumbers.textContent = displayValue;
-}
+        val2 = Number(val2);
+        val2 *= Number(secondaryValue);
+        secondaryValue = "";
+        displayNumbers.textContent = val2;
+    }
 }
 
 
 function divide() {
-console.log("displayValue: " + displayValue + " secondary: " + secondaryValue)
+    console.log("displayValue: " + val2 + " secondary: " + secondaryValue)
 
-    if(displayValue === 0 || displayValue === '0') {
-        displayValue = secondaryValue;
+
+
+    if (val2 === 0 || val2 === '0' || val2 === "") {
+        val2 += secondaryValue;
         secondaryValue = "";
-        displayNumbers.textContent = displayValue;
+        displayNumbers.textContent = val2;
+    } else if (secondaryValue != "" || secondaryValue != null) {
+
     } else {
-    displayValue = Number(displayValue);
-    displayValue /= Number(secondaryValue);
-    secondaryValue = "";
-    displayNumbers.textContent = displayValue;
-}
+        val2 = Number(val2);
+        val2 /= Number(secondaryValue);
+        secondaryValue = "";
+        displayNumbers.textContent = val2;
+    }
 }
 
 
 function operate() {
+
     
-    if(operator === '+') {
+
+    if (op === '+') {
         add();
-    } 
-    else if(operator === '-') {
+    }
+    else if (op === '-') {
         subtract();
     }
-    else if(operator === '*') {
+    else if (op === '*') {
         multiply();
     }
-    else if(operator === '/') {
-        if(secondaryValue === 0 || secondaryValue === '0') {
+    else if (op === '/') {
+        if (secondaryValue === 0 || secondaryValue === '0') {
             alert('no');
-        }else {
-        divide();
-    }}
+        } else {
+            divide();
+        }
+    }
 
 
 }
 
 function addToDisplay(num) {
-    if(secondaryValue === undefined) {
+    if (secondaryValue === null || secondaryValue === undefined) {
         secondaryValue = num;
         displayNumbers.textContent = secondaryValue;
-    }else {
+        console.log("displayValue: " + val2 + " secondaryValue: " + secondaryValue)
+
+    } else {
         secondaryValue += num;
         displayNumbers.textContent = secondaryValue;
+        console.log("displayValue: " + val2 + " secondaryValue: " + secondaryValue)
+
     }
 
 }
 
 function clearAll() {
     displayNumbers.textContent = 0;
-    displayValue = "0";
+    val2 = "0";
     secondaryValue = "";
-    operator = "";
+    op = "";
 
 }
 
@@ -170,9 +194,12 @@ operatorButton.forEach((btn) => {
     if (btn.id == "addButton") {
 
         btn.addEventListener('click', () => {
-
-            operator = '+'
-            add();
+            if (op != null) {
+                op2 = '+';
+            } else {
+                op = '+';
+                add();
+            }
 
 
         });
@@ -181,32 +208,43 @@ operatorButton.forEach((btn) => {
     if (btn.id == "subtractButton") {
 
         btn.addEventListener('click', () => {
-            operator = '-'
-            subtract();
+            if (op != null) {
+                op2 = '-';
+            } else {
+                op = '-'
+                subtract();
+            }
         });
     }
 
     if (btn.id == "multiplyButton") {
 
         btn.addEventListener('click', () => {
-            operator = '*'
-            multiply();
-
+            if (op != null) {
+                op2 = '*';
+            } else {
+                op = '*'
+                multiply();
+            }
         });
     }
 
     if (btn.id == "divideButton") {
 
         btn.addEventListener('click', () => {
-            operator = '/'
-            divide();
+            if (op != null) {
+                op2 = '/';
+            } else {
+                op = '/'
+                divide();
+            }
 
         });
     }
 
     if (btn.id == "equalsButton") {
         btn.addEventListener('click', () => {
-            operate(operator);
+            operate(op);
         });
     }
 
